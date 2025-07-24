@@ -1,27 +1,37 @@
 const About = () => {
   return (
-    <section id="about" className="bg-white dark:bg-black pt-20 pb-16 px-4 lg:px-8">
-      <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-4xl font-extrabold mb-6 text-gray-900 dark:text-white">
-            About Us
-          </h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 text-lg leading-relaxed">
-            We are a team of passionate engineers delivering top-notch Web Development and Cybersecurity solutions. From sleek websites and mobile apps to powerful dashboards and cloud-based SaaS platforms — we bring ideas to life with modern tech.
-          </p>
-          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-            We also protect what we build. Our cybersecurity services include penetration testing, network hardening, and expert security consulting to keep your digital assets safe.
-          </p>
-        </div>
-        <div className="w-full">
-          <img
-            src="/assets/img/about-illustration.svg"
-            alt="About illustration"
-            className="w-full h-auto"
-          />
-        </div>
+<section id="about" className="bg-slate-100 pt-12 pb-16">
+  <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+    <div className="text-center mb-10">
+      <h2 className="text-4xl font-extrabold text-gray-900">Who We Are</h2>
+      <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+        Fortynx is a modern tech company specializing in building cutting-edge websites and providing strong cybersecurity solutions for businesses of all sizes.
+      </p>
+    </div>
+    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="bg-white shadow rounded-2xl p-6">
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">Smart Web Development</h3>
+        <p className="text-gray-600">
+          We craft responsive, lightning-fast websites that boost your business presence online and convert visitors into customers.
+        </p>
       </div>
-    </section>
+      <div className="bg-white shadow rounded-2xl p-6">
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">Locked-Tight Security</h3>
+        <p className="text-gray-600">
+          Our cybersecurity experts secure your data, servers, and infrastructure from modern-day threats and vulnerabilities.
+        </p>
+      </div>
+      <div className="bg-white shadow rounded-2xl p-6">
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">Tailored SaaS Solutions</h3>
+        <p className="text-gray-600">
+          Need a custom SaaS platform? We help you build, scale, and deploy smart cloud software that meets your exact needs.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
   );
 };
 
