@@ -14,16 +14,16 @@ const Contact = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://127.0.0.1:8000/api/contact/", form); // adjust to your backend URL
-      setStatus("Message sent successfully!");
-      setForm({ name: "", email: "", message: "" });
-    } catch (err) {
-      setStatus("Something went wrong. Please try again.");
-    }
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    await axios.post("http://127.0.0.1:8000/api/contact/", form); // removed `res =`
+    setStatus("Message sent successfully!");
+    setForm({ name: "", email: "", message: "" });
+  } catch (err) {
+    setStatus("Something went wrong. Please try again.");
+  }
+};
 
   return (
     <section className="bg-[#F9FAFB] py-16 px-4" id="contact">
