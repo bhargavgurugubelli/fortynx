@@ -17,21 +17,18 @@ const Nav: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-black shadow">
       <div className="w-full px-4 py-4 flex justify-between items-center">
-
         
-        {/* Logo only (no text duplication) */}
-
-
-<div className="flex items-center space-x-2 ml-0">
-  <div className="h-10 w-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-lg">
-    F
-  </div>
-  <span className="text-xl font-semibold text-gray-800 dark:text-white" style={{ letterSpacing: '4px' }}>
-  Fortynx
-</span>
-
-</div>
-
+        {/* Logo with image and name */}
+        <div className="flex items-center space-x-2 ml-0">
+          <img 
+            src="/assets/images/fortynx-logo.png" // ← your actual logo filename here
+            alt="Fortynx Logo"
+            className="h-12 w-auto"
+          />
+          <span className="text-xl font-semibold text-gray-800 dark:text-white" style={{ letterSpacing: '4px' }}>
+            
+          </span>
+        </div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6 text-gray-700 dark:text-gray-300 font-medium">
