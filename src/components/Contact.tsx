@@ -17,7 +17,7 @@ const Contact = () => {
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
-    await axios.post("http://127.0.0.1:8000/api/contact/", form); // removed `res =`
+    await axios.post("https://fortynx-backend.onrender.com/api/contact/", form);
     setStatus("Message sent successfully!");
     setForm({ name: "", email: "", message: "" });
   } catch (err) {
