@@ -37,7 +37,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
           <div className="flex items-center gap-2 text-gray-700">
             <Phone className="text-blue-600" size={20} />
-            <span>+91 98765 43210</span>
+            <span>+91 7901247450</span>
           </div>
           <div className="flex items-center gap-2 text-gray-700">
             <Mail className="text-blue-600" size={20} />
