@@ -14,7 +14,7 @@ const About = () => {
           startCounting();
         }
       },
-      { threshold: 1.0 }
+      { threshold: 0.3 }
     );
 
     if (sectionRef.current) {
