@@ -3,13 +3,16 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Nav";
 
+// ✅ Get base URL from env
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const ServiceDetail: React.FC = () => {
   const { slug } = useParams();
   const [service, setService] = useState<any>(null);
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/services/${slug}/`)
+      .get(`${BASE_URL}/api/services/${slug}/`)
       .then((res) => setService(res.data))
       .catch((err) => console.error("Error fetching service:", err));
   }, [slug]);
@@ -22,12 +25,9 @@ const ServiceDetail: React.FC = () => {
     <>
       <Navbar />
 
-      {/* Page Layout Wrapper */}
       <div className="flex flex-col min-h-screen">
-        {/* Main Content Area */}
         <div className="flex-grow">
           <div className="mt-32 px-6 max-w-6xl mx-auto">
-            {/* Breadcrumb */}
             <nav className="text-sm text-gray-500 mb-6">
               <Link to="/" className="hover:underline text-blue-600">Home</Link>
               <span className="mx-2">/</span>
@@ -36,12 +36,10 @@ const ServiceDetail: React.FC = () => {
               <span className="text-gray-700 font-semibold">{service.name}</span>
             </nav>
 
-            {/* Main Content */}
             <div className="flex flex-col md:flex-row-reverse items-start gap-8">
-              {/* Image + CTA */}
               <div className="md:w-1/2 w-full">
                 <img
-                  src={`http://127.0.0.1:8000${service.image}`}
+                  src={`${BASE_URL}${service.image}`}
                   className="w-full rounded-xl shadow-lg object-cover"
                 />
                 <div className="flex justify-center mt-6">
@@ -54,7 +52,6 @@ const ServiceDetail: React.FC = () => {
                 </div>
               </div>
 
-              {/* Text Content */}
               <div className="md:w-1/2 w-full space-y-6">
                 <h1 className="text-4xl font-bold text-gray-900">{service.name}</h1>
                 <p className="text-gray-700 text-lg leading-relaxed">{service.description}</p>
@@ -79,7 +76,6 @@ const ServiceDetail: React.FC = () => {
             </div>
           </div>
         </div>
-
       </div>
     </>
   );
