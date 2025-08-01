@@ -22,9 +22,8 @@ const App: React.FC = () => {
 
       <ProjectsSection />
       <Testimonials />
-    
-      <Contact />
       <DirectorMessage />
+      <Contact />
     
       <WhatsAppButton />
     </>

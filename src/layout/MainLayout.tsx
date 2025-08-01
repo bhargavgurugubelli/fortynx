@@ -8,7 +8,7 @@ const MainLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Nav />
-      <main className="flex-grow">
+      <main className="flex-1 pt-20"> {/* <- Add padding here */}
         <Outlet />
       </main>
       <Footer />

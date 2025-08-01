@@ -1,9 +1,10 @@
+// src/pages/Blog.tsx
 import React from 'react';
 
 const Blog: React.FC = () => {
   return (
-    <div className="pt-24 px-6 min-h-screen bg-white">
-      <div className="max-w-4xl mx-auto text-center">
+    <div className="pt-24 px-6 min-h-full bg-white">
+      <div className="max-w-4xl mx-auto text-center pb-12">
         <h1 className="text-4xl font-bold mb-6 text-gray-800">Welcome to the QuickBill Blog</h1>
         <p className="text-lg text-gray-600 mb-10">
           Discover how QuickBill is transforming restaurant operations with smart billing, instant WhatsApp updates, and seamless kitchen workflows.
@@ -21,15 +22,15 @@ const Blog: React.FC = () => {
               <li>🎁 5-day free trial to explore all features</li>
             </ul>
           </div>
-<div className="rounded-lg shadow-lg overflow-hidden ml-12">
-  <img
-    src="/assets/images/quickbill blog.png"
-    // alt="QuickBill Blog Preview"
-    className="w-full h-auto object-cover"
-  />
-</div>
-        </div>
 
+          <div className="rounded-lg shadow-lg overflow-hidden ml-12">
+            <img
+              src="/assets/images/quickbill blog.png"
+              alt="QuickBill Blog Preview"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
