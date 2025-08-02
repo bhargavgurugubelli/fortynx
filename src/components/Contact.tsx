@@ -2,28 +2,42 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import React, { useState } from "react";
 import axios from "axios";
 
-const Contact = () => {
-  const [form, setForm] = useState({
+const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
+interface FormState {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const Contact: React.FC = () => {
+  const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  try {
-    await axios.post("https://fortynx-backend.onrender.com/api/contact/", form);
-    setStatus("Message sent successfully!");
-    setForm({ name: "", email: "", message: "" });
-  } catch (err) {
-    setStatus("Something went wrong. Please try again.");
-  }
-};
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await axios.post(`${API_BASE}/api/contact/`, form, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: false, // set true if you rely on cookies/auth
+      });
+      setStatus("Message sent successfully!");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error("Contact form error:", err);
+      setStatus("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <section className="bg-[#F9FAFB] py-16 px-4" id="contact">
@@ -90,7 +104,15 @@ const handleSubmit = async (e: React.FormEvent) => {
         </form>
 
         {status && (
-          <p className="text-green-600 font-medium mt-4">{status}</p>
+          <p
+            className={`font-medium mt-4 ${
+              status.toLowerCase().includes("success")
+                ? "text-green-600"
+                : "text-red-600"
+            }`}
+          >
+            {status}
+          </p>
         )}
       </div>
     </section>
