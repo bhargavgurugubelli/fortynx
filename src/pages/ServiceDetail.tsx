@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Nav";
-import ServiceDetailSkeleton from "../components/ServiceDetailSkeleton"; // ✅ Import
+import ServiceDetailSkeleton from "../components/ServiceDetailSkeleton";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE = (import.meta.env.VITE_API_URL || "https://api.fortynx.in").replace(/\/$/, "");
 
 interface Feature {
   text: string;
@@ -33,7 +33,7 @@ const ServiceDetail: React.FC = () => {
     setLoading(true);
 
     axios
-      .get<ServiceType>(`${BASE_URL}/api/services/${slug}/`)
+      .get<ServiceType>(`${API_BASE}/api/services/${slug}/`)
       .then((res) => {
         if (!cancelled) {
           setService(res.data);
@@ -58,7 +58,7 @@ const ServiceDetail: React.FC = () => {
   const imageSrc = service?.image
     ? /^https?:\/\//.test(service.image)
       ? service.image
-      : new URL(service.image, BASE_URL).toString()
+      : new URL(service.image, API_BASE).toString()
     : null;
 
   return (
@@ -73,7 +73,6 @@ const ServiceDetail: React.FC = () => {
         <div className="text-center p-10 text-gray-600">Service not found.</div>
       ) : (
         <div className="px-6 max-w-6xl mx-auto">
-
           {/* Breadcrumb Navigation */}
           <nav aria-label="breadcrumb" className="text-sm text-gray-500 mb-6">
             <Link to="/" className="hover:underline text-blue-600">
