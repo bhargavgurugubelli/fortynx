@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import ServiceCardSkeleton from "../components/ServiceCardSkeleton"; // <-- New import
+import ServiceCardSkeleton from "../components/ServiceCardSkeleton";
 
-// Import all possible icons
+// Import icons
 import {
   Smartphone,
   ShoppingCart,
@@ -19,20 +19,20 @@ import {
   Eye,
 } from "lucide-react";
 
-// Map icon name strings to actual Lucide icons
+// Map icon strings to components
 const iconMap: Record<string, React.ElementType> = {
-  Smartphone,
-  ShoppingCart,
-  Monitor,
-  LayoutDashboard,
-  UserCircle,
-  Cloud,
-  ShieldCheck,
-  Network,
-  Lock,
-  AlertTriangle,
-  Bug,
-  Eye,
+  smartphone: Smartphone,
+  "shopping-cart": ShoppingCart,
+  monitor: Monitor,
+  layout: LayoutDashboard,
+  user: UserCircle,
+  cloud: Cloud,
+  shield: ShieldCheck,
+  network: Network,
+  lock: Lock,
+  "alert-triangle": AlertTriangle,
+  bug: Bug,
+  eye: Eye,
 };
 
 interface Service {
@@ -46,11 +46,13 @@ interface Service {
   features: string[];
 }
 
+const API_BASE = (import.meta.env.VITE_API_URL || "https://api.fortynx.in").replace(/\/$/, "");
+
 const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(true); // <-- Loading state
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
   const location = useLocation();
   const isFullPage = location.pathname === "/services";
@@ -58,7 +60,7 @@ const Services = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/services/`);
+        const res = await axios.get(`${API_BASE}/api/services/`);
         const serviceData: Service[] = res.data;
 
         setServices(serviceData);
@@ -68,18 +70,16 @@ const Services = () => {
         if (uniqueCategories.length > 0) {
           setActiveTab(uniqueCategories[0]);
         }
-
-        setLoading(false); // ✅ Stop loading after data arrives
       } catch (error) {
         console.error("Failed to fetch services", error);
-        setLoading(false); // even on error, stop loading
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchServices();
   }, []);
 
-  // Group services by category
   const groupedServices = categories.reduce((acc, category) => {
     acc[category] = services.filter((service) => service.category === category);
     return acc;
@@ -139,8 +139,7 @@ const Services = () => {
                 .fill(0)
                 .map((_, i) => <ServiceCardSkeleton key={i} />)
             : (groupedServices[activeTab] || []).map((service) => {
-                const Icon = iconMap[service.icon] || Monitor;
-
+                const Icon = iconMap[service.icon.toLowerCase()] || Monitor;
                 return (
                   <div
                     key={service.id}

@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import React, { useState } from "react";
 import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const API_BASE = (import.meta.env.VITE_API_URL || "https://api.fortynx.in").replace(/\/$/, "");
 
 interface FormState {
   name: string;
@@ -29,7 +29,6 @@ const Contact: React.FC = () => {
     try {
       await axios.post(`${API_BASE}/api/contact/`, form, {
         headers: { "Content-Type": "application/json" },
-        withCredentials: false, // set true if you rely on cookies/auth
       });
       setStatus("Message sent successfully!");
       setForm({ name: "", email: "", message: "" });
