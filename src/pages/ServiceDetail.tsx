@@ -55,12 +55,6 @@ const ServiceDetail: React.FC = () => {
     };
   }, [slug]);
 
-  const imageSrc = service?.image
-    ? /^https?:\/\//.test(service.image)
-      ? service.image
-      : new URL(service.image, API_BASE).toString()
-    : null;
-
   return (
     <>
       <Navbar />
@@ -72,7 +66,7 @@ const ServiceDetail: React.FC = () => {
       ) : !service ? (
         <div className="text-center p-10 text-gray-600">Service not found.</div>
       ) : (
-        <div className="px-6 max-w-6xl mx-auto">
+        <div className="px-6 max-w-4xl mx-auto">
           {/* Breadcrumb Navigation */}
           <nav aria-label="breadcrumb" className="text-sm text-gray-500 mb-6">
             <Link to="/" className="hover:underline text-blue-600">
@@ -88,57 +82,35 @@ const ServiceDetail: React.FC = () => {
             </span>
           </nav>
 
-          <div className="flex flex-col md:flex-row-reverse items-start gap-8">
-            {/* Right Image Column */}
-            <div className="md:w-1/2 w-full">
-              {imageSrc ? (
-                <img
-                  src={imageSrc}
-                  className="w-full rounded-xl shadow-lg object-cover"
-                  alt={service.title}
-                />
-              ) : (
-                <div className="w-full h-64 bg-gray-100 rounded-xl flex items-center justify-center">
-                  <span className="text-gray-400">Image coming soon</span>
-                </div>
-              )}
+          {/* Service Info */}
+          <div className="space-y-6">
+            <h1 className="text-4xl font-bold text-gray-900">{service.title}</h1>
+            <p className="text-gray-700 text-lg leading-relaxed">{service.description}</p>
 
-              <div className="flex justify-center mt-6">
-                <a
-                  href="/book-meeting"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-md transition duration-300"
-                  aria-label="Book a free demo"
-                >
-                  📅 Book a Free Demo Now
-                </a>
+            {service.features?.length > 0 && (
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-800 mt-6">✨ Key Benefits</h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                  {service.features.map((f, idx) => (
+                    <li
+                      key={idx}
+                      className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex items-start gap-3"
+                    >
+                      <span className="text-yellow-500 text-xl">💡</span>
+                      <span className="text-gray-800">{f.text}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
+            )}
 
-            {/* Left Text Column */}
-            <div className="md:w-1/2 w-full space-y-6">
-              <h1 className="text-4xl font-bold text-gray-900">{service.title}</h1>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                {service.description}
-              </p>
-
-              {service.features && service.features.length > 0 && (
-                <div>
-                  <h3 className="text-2xl font-semibold text-gray-800 mt-6">
-                    ✨ Key Benefits
-                  </h3>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                    {service.features.map((f, idx) => (
-                      <li
-                        key={idx}
-                        className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex items-start gap-3"
-                      >
-                        <span className="text-yellow-500 text-xl">💡</span>
-                        <span className="text-gray-800">{f.text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+            <div className="flex justify-center mt-6">
+              <a
+                href="/book-meeting"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-md transition duration-300"
+              >
+                📅 Book a Free Demo Now
+              </a>
             </div>
           </div>
         </div>
