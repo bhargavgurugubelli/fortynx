@@ -7,7 +7,6 @@ import Services from "./components/Services";
 import ProjectsSection from './components/ProjectsSection';
 import Testimonials from './components/Testimonials';
 import Contact from "./components/Contact";
-import DirectorMessage from "./components/DirectorMessage";
 import WhatsAppButton from "./components/WhatsAppButton";
 
 import "/public/assets/css/particles.css";
