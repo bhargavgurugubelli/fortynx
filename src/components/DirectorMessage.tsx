@@ -1,7 +1,7 @@
 const DirectorMessage = () => {
   return (
     <section className="py-12 px-4 bg-white text-center">
-      <h3 className="text-3xl font-bold mb-10 text-gray-900">Words from Our Directors</h3>
+      
 
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
         {/* Bhargav's Message */}

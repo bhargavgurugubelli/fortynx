@@ -18,11 +18,12 @@ const App: React.FC = () => {
       <Nav />
       <Hero />
       <About />
+    
       <Services />
 
       <ProjectsSection />
       <Testimonials />
-      <DirectorMessage />
+      
       <Contact />
     
       <WhatsAppButton />
