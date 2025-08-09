@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+
 import App from "./App";
 import Services from "./components/Services";
 import ServiceDetail from "./pages/ServiceDetail";
@@ -8,10 +9,14 @@ import TermsOfUse from './pages/TermsOfUse';
 import MainLayout from "./layout/MainLayout";
 import Blog from './pages/Blog';
 
-// ⬇ Import components from components folder
+// Components for About section
 import About from './components/About';
 import Contact from './components/Contact';
 import ProjectsSection from './components/ProjectsSection';
+
+// Import your new pages
+import Mission from './pages/Mission';
+import Vision from './pages/Vision';
 
 const AllRoutes = () => {
   return (
@@ -25,8 +30,12 @@ const AllRoutes = () => {
         <Route path="terms-of-use" element={<TermsOfUse />} />
         <Route path="blog" element={<Blog />} />
 
-        {/* ⬇ Add new routes with top padding for navbar spacing */}
+        {/* About pages */}
         <Route path="about" element={<div className="pt-20"><About /></div>} />
+        <Route path="about/mission" element={<div className="pt-20"><Mission /></div>} />
+        <Route path="about/vision" element={<div className="pt-20"><Vision /></div>} />
+
+        {/* Other routes */}
         <Route path="contact" element={<div className="pt-20"><Contact /></div>} />
         <Route path="projects" element={<div className="pt-20"><ProjectsSection /></div>} />
       </Route>
