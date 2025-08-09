@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); // mobile menu toggle
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Dropdown open states
+  // Desktop Dropdown open states
   const [aboutOpen, setAboutOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
-  // Timer refs for delayed closing
+  // Timer refs for delayed closing on desktop
   const aboutTimer = useRef<NodeJS.Timeout | null>(null);
   const servicesTimer = useRef<NodeJS.Timeout | null>(null);
+
+  // Mobile submenu open states
+  const [aboutMobileOpen, setAboutMobileOpen] = useState(false);
+  const [servicesMobileOpen, setServicesMobileOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -23,7 +27,7 @@ const Nav: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handlers for About dropdown
+  // Desktop dropdown handlers
   const handleAboutMouseEnter = () => {
     if (aboutTimer.current) {
       clearTimeout(aboutTimer.current);
@@ -36,8 +40,6 @@ const Nav: React.FC = () => {
       setAboutOpen(false);
     }, 300);
   };
-
-  // Handlers for Services dropdown
   const handleServicesMouseEnter = () => {
     if (servicesTimer.current) {
       clearTimeout(servicesTimer.current);
@@ -51,6 +53,10 @@ const Nav: React.FC = () => {
     }, 300);
   };
 
+  // Mobile submenu toggles
+  const toggleAboutMobile = () => setAboutMobileOpen((prev) => !prev);
+  const toggleServicesMobile = () => setServicesMobileOpen((prev) => !prev);
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 bg-white dark:bg-black shadow transition-all duration-300 ${
@@ -58,7 +64,6 @@ const Nav: React.FC = () => {
       }`}
     >
       <div className="w-full px-6 flex justify-between items-center transition-all duration-300">
-
         {/* Logo */}
         <a href="/" className="flex items-center space-x-2">
           <img
@@ -70,7 +75,6 @@ const Nav: React.FC = () => {
 
         {/* Desktop Nav */}
         <ul className="hidden md:flex justify-center items-center space-x-10 text-gray-700 dark:text-gray-300 font-semibold text-xl">
-
           {/* About Dropdown */}
           <li
             className="relative"
@@ -233,9 +237,21 @@ const Nav: React.FC = () => {
             </div>
           </li>
 
-          <li><a href="/blog" className="hover:text-green-500">Blog</a></li>
-          <li><a href="/projects" className="hover:text-green-500">Projects</a></li>
-          <li><a href="/contact" className="hover:text-green-500">Contact</a></li>
+          <li>
+            <a href="/blog" className="hover:text-green-500">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="/projects" className="hover:text-green-500">
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="/contact" className="hover:text-green-500">
+              Contact
+            </a>
+          </li>
         </ul>
 
         {/* Mobile Menu Toggle */}
@@ -254,146 +270,173 @@ const Nav: React.FC = () => {
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-black px-4 pb-4">
           <ul className="space-y-4 text-gray-700 dark:text-gray-300 font-semibold text-lg">
-
             {/* About submenu */}
             <li>
-              <span className="block font-semibold mb-2">About</span>
-              <ul className="ml-4 space-y-1 text-base">
-                <li>
-                  <a
-                    href="/about/mission"
-                    className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                  >
-                    Our Mission
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/about/vision"
-                    className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                  >
-                    Our Vision
-                  </a>
-                </li>
-              </ul>
+              <button
+                onClick={toggleAboutMobile}
+                className="flex justify-between w-full font-semibold mb-2"
+                aria-expanded={aboutMobileOpen}
+              >
+                About
+                {aboutMobileOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {aboutMobileOpen && (
+                <ul className="ml-4 space-y-1 text-base">
+                  <li>
+                    <a
+                      href="/about/mission"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                    >
+                      Our Mission
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/about/vision"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                    >
+                      Our Vision
+                    </a>
+                  </li>
+                </ul>
+              )}
             </li>
 
             {/* Services submenu */}
             <li>
-              <span className="block font-semibold mb-2">Services</span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="text-base font-bold text-black dark:text-white mb-2">Web Development</h4>
-                  <ul className="space-y-2 text-sm ml-2">
-                    <li>
-                      <a
-                        href="/service/e-commerce-app-development"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        E-commerce App Development
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/mobile-app-development"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Mobile App Development
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/website-design"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Website Design
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/admin-dashboard"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Admin Dashboard
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/portfolio-website"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Portfolio Website
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/saas-platform-development"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        SaaS Platform Development
-                      </a>
-                    </li>
-                  </ul>
+              <button
+                onClick={toggleServicesMobile}
+                className="flex justify-between w-full font-semibold mb-2"
+                aria-expanded={servicesMobileOpen}
+              >
+                Services
+                {servicesMobileOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {servicesMobileOpen && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 ml-4">
+                  <div>
+                    <h4 className="text-base font-bold text-black dark:text-white mb-2">
+                      Web Development
+                    </h4>
+                    <ul className="space-y-2 text-sm ml-2">
+                      <li>
+                        <a
+                          href="/service/e-commerce-app-development"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          E-commerce App Development
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/mobile-app-development"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Mobile App Development
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/website-design"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Website Design
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/admin-dashboard"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Admin Dashboard
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/portfolio-website"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Portfolio Website
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/saas-platform-development"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          SaaS Platform Development
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-black dark:text-white mb-2">
+                      Cybersecurity
+                    </h4>
+                    <ul className="space-y-2 text-sm ml-2">
+                      <li>
+                        <a
+                          href="/service/penetration-testing"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Penetration Testing
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/network-security"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Network Security
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/security-consulting"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Security Consulting
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/threat-intelligence"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Threat Intelligence
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/malware-analysis"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Malware Analysis
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/service/security-monitoring"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                        >
+                          Security Monitoring
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-base font-bold text-black dark:text-white mb-2">Cybersecurity</h4>
-                  <ul className="space-y-2 text-sm ml-2">
-                    <li>
-                      <a
-                        href="/service/penetration-testing"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Penetration Testing
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/network-security"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Network Security
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/security-consulting"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Security Consulting
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/threat-intelligence"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Threat Intelligence
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/malware-analysis"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Malware Analysis
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/service/security-monitoring"
-                        className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
-                      >
-                        Security Monitoring
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              )}
             </li>
 
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li>
+              <a href="/blog">Blog</a>
+            </li>
+            <li>
+              <a href="/projects">Projects</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
+            </li>
           </ul>
         </div>
       )}
