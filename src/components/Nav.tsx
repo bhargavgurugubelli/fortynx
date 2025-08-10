@@ -81,7 +81,7 @@ const Nav: React.FC = () => {
             onMouseEnter={handleAboutMouseEnter}
             onMouseLeave={handleAboutMouseLeave}
           >
-            <div className="flex items-center space-x-1 cursor-pointer hover:text-green-500">
+            <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
               <span>About</span>
               <ChevronDown size={18} />
             </div>
@@ -94,7 +94,7 @@ const Nav: React.FC = () => {
                 <li>
                   <a
                     href="/about/mission"
-                    className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                    className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                   >
                     Our Mission
                   </a>
@@ -102,7 +102,7 @@ const Nav: React.FC = () => {
                 <li>
                   <a
                     href="/about/vision"
-                    className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                    className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                   >
                     Our Vision
                   </a>
@@ -117,7 +117,7 @@ const Nav: React.FC = () => {
             onMouseEnter={handleServicesMouseEnter}
             onMouseLeave={handleServicesMouseLeave}
           >
-            <div className="flex items-center space-x-1 cursor-pointer hover:text-green-500">
+            <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
               <span>Services</span>
               <ChevronDown size={18} />
             </div>
@@ -133,7 +133,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/e-commerce-app-development"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       E-commerce App Development
                     </a>
@@ -141,7 +141,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/mobile-app-development"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Mobile App Development
                     </a>
@@ -149,7 +149,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/website-design"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Website Design
                     </a>
@@ -157,7 +157,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/admin-dashboard"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Admin Dashboard
                     </a>
@@ -165,7 +165,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/portfolio-website"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Portfolio Website
                     </a>
@@ -173,7 +173,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/saas-platform-development"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       SaaS Platform Development
                     </a>
@@ -187,7 +187,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/penetration-testing"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Penetration Testing
                     </a>
@@ -195,7 +195,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/network-security"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Network Security
                     </a>
@@ -203,7 +203,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/security-consulting"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Security Consulting
                     </a>
@@ -211,7 +211,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/threat-intelligence"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Threat Intelligence
                     </a>
@@ -219,7 +219,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/malware-analysis"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Malware Analysis
                     </a>
@@ -227,7 +227,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/service/security-monitoring"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Security Monitoring
                     </a>
@@ -238,17 +238,17 @@ const Nav: React.FC = () => {
           </li>
 
           <li>
-            <a href="/blog" className="hover:text-green-500">
+            <a href="/blog" className="hover:text-orange-500">
               Blog
             </a>
           </li>
           <li>
-            <a href="/projects" className="hover:text-green-500">
+            <a href="/projects" className="hover:text-orange-500">
               Projects
             </a>
           </li>
           <li>
-            <a href="/contact" className="hover:text-green-500">
+            <a href="/contact" className="hover:text-orange-500">
               Contact
             </a>
           </li>
@@ -274,7 +274,7 @@ const Nav: React.FC = () => {
             <li>
               <button
                 onClick={toggleAboutMobile}
-                className="flex justify-between w-full font-semibold mb-2"
+                className="flex justify-between w-full font-semibold mb-2 text-orange-600"
                 aria-expanded={aboutMobileOpen}
               >
                 About
@@ -285,7 +285,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/about/mission"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Our Mission
                     </a>
@@ -293,7 +293,7 @@ const Nav: React.FC = () => {
                   <li>
                     <a
                       href="/about/vision"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                     >
                       Our Vision
                     </a>
@@ -306,7 +306,7 @@ const Nav: React.FC = () => {
             <li>
               <button
                 onClick={toggleServicesMobile}
-                className="flex justify-between w-full font-semibold mb-2"
+                className="flex justify-between w-full font-semibold mb-2 text-orange-600"
                 aria-expanded={servicesMobileOpen}
               >
                 Services
@@ -322,7 +322,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/e-commerce-app-development"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           E-commerce App Development
                         </a>
@@ -330,7 +330,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/mobile-app-development"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Mobile App Development
                         </a>
@@ -338,7 +338,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/website-design"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Website Design
                         </a>
@@ -346,7 +346,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/admin-dashboard"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Admin Dashboard
                         </a>
@@ -354,7 +354,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/portfolio-website"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Portfolio Website
                         </a>
@@ -362,7 +362,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/saas-platform-development"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           SaaS Platform Development
                         </a>
@@ -377,7 +377,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/penetration-testing"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Penetration Testing
                         </a>
@@ -385,7 +385,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/network-security"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Network Security
                         </a>
@@ -393,7 +393,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/security-consulting"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Security Consulting
                         </a>
@@ -401,7 +401,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/threat-intelligence"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Threat Intelligence
                         </a>
@@ -409,7 +409,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/malware-analysis"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Malware Analysis
                         </a>
@@ -417,7 +417,7 @@ const Nav: React.FC = () => {
                       <li>
                         <a
                           href="/service/security-monitoring"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-green-400 hover:bg-green-100 dark:hover:bg-green-900 transition"
+                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
                         >
                           Security Monitoring
                         </a>
@@ -429,13 +429,19 @@ const Nav: React.FC = () => {
             </li>
 
             <li>
-              <a href="/blog">Blog</a>
+              <a href="/blog" className="text-orange-600 hover:text-orange-500">
+                Blog
+              </a>
             </li>
             <li>
-              <a href="/projects">Projects</a>
+              <a href="/projects" className="text-orange-600 hover:text-orange-500">
+                Projects
+              </a>
             </li>
             <li>
-              <a href="/contact">Contact</a>
+              <a href="/contact" className="text-orange-600 hover:text-orange-500">
+                Contact
+              </a>
             </li>
           </ul>
         </div>
