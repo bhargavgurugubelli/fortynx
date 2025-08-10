@@ -3,7 +3,9 @@ import { ShieldCheck, Cpu, Globe, Users } from "lucide-react";
 
 const Mission: React.FC = () => {
   return (
-    <section className="max-w-6xl mx-auto p-6 sm:p-12">
+    <section className="max-w-6xl mx-auto">
+
+
       <h1 className="text-4xl font-extrabold mb-8 text-center text-gray-900 dark:text-white">
         Our Mission
       </h1>

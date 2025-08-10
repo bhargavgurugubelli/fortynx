@@ -3,7 +3,8 @@ import { Rocket, Eye, Globe, Lock } from "lucide-react";
 
 const Vision: React.FC = () => {
   return (
-    <section className="max-w-6xl mx-auto p-6 sm:p-12">
+    <section className="max-w-6xl mx-auto">
+
       <h1 className="text-4xl font-extrabold mb-8 text-center text-gray-900 dark:text-white">
         Our Vision
       </h1>
