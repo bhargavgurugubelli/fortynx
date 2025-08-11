@@ -2,60 +2,44 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Nav: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false); // mobile menu toggle
+  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Desktop Dropdown open states
   const [aboutOpen, setAboutOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
-  // Timer refs for delayed closing on desktop
   const aboutTimer = useRef<NodeJS.Timeout | null>(null);
   const servicesTimer = useRef<NodeJS.Timeout | null>(null);
 
-  // Mobile submenu open states
   const [aboutMobileOpen, setAboutMobileOpen] = useState(false);
   const [servicesMobileOpen, setServicesMobileOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Desktop dropdown handlers
   const handleAboutMouseEnter = () => {
-    if (aboutTimer.current) {
-      clearTimeout(aboutTimer.current);
-      aboutTimer.current = null;
-    }
+    if (aboutTimer.current) clearTimeout(aboutTimer.current);
     setAboutOpen(true);
   };
   const handleAboutMouseLeave = () => {
-    aboutTimer.current = setTimeout(() => {
-      setAboutOpen(false);
-    }, 300);
+    aboutTimer.current = setTimeout(() => setAboutOpen(false), 300);
   };
+
   const handleServicesMouseEnter = () => {
-    if (servicesTimer.current) {
-      clearTimeout(servicesTimer.current);
-      servicesTimer.current = null;
-    }
+    if (servicesTimer.current) clearTimeout(servicesTimer.current);
     setServicesOpen(true);
   };
   const handleServicesMouseLeave = () => {
-    servicesTimer.current = setTimeout(() => {
-      setServicesOpen(false);
-    }, 300);
+    servicesTimer.current = setTimeout(() => setServicesOpen(false), 300);
   };
 
-  // Mobile submenu toggles
-  const toggleAboutMobile = () => setAboutMobileOpen((prev) => !prev);
-  const toggleServicesMobile = () => setServicesMobileOpen((prev) => !prev);
+  const toggleAboutMobile = () => setAboutMobileOpen(prev => !prev);
+  const toggleServicesMobile = () => setServicesMobileOpen(prev => !prev);
 
   return (
     <nav
@@ -77,13 +61,15 @@ const Nav: React.FC = () => {
         <ul className="hidden md:flex justify-center items-center space-x-10 text-gray-700 dark:text-gray-300 font-semibold text-xl">
           {/* About Dropdown */}
           <li
-            className="relative"
+            className="relative group"
             onMouseEnter={handleAboutMouseEnter}
             onMouseLeave={handleAboutMouseLeave}
           >
             <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
-              <span>About</span>
-              <ChevronDown size={18} />
+              <span className="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-orange-500 after:transition-all after:duration-300 group-hover:after:w-full">
+                About
+              </span>
+              <ChevronDown size={18} className="md:hidden" />
             </div>
             <div
               className={`absolute left-1/2 -translate-x-1/2 mt-3 w-48 bg-white dark:bg-gray-900 rounded shadow-lg transition-opacity duration-200 ease-in-out z-50 p-4 ${
@@ -113,13 +99,15 @@ const Nav: React.FC = () => {
 
           {/* Services Dropdown */}
           <li
-            className="relative"
+            className="relative group"
             onMouseEnter={handleServicesMouseEnter}
             onMouseLeave={handleServicesMouseLeave}
           >
             <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
-              <span>Services</span>
-              <ChevronDown size={18} />
+              <span className="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-orange-500 after:transition-all after:duration-300 group-hover:after:w-full">
+                Services
+              </span>
+              <ChevronDown size={18} className="md:hidden" />
             </div>
             <div
               className={`absolute left-1/2 -translate-x-1/2 mt-3 w-[600px] bg-white dark:bg-gray-900 rounded shadow-lg transition-opacity duration-200 ease-in-out z-50 p-6 grid grid-cols-2 gap-8 ${
@@ -130,125 +118,41 @@ const Nav: React.FC = () => {
               <div>
                 <h4 className="text-lg font-bold text-black dark:text-white mb-2">Web Development</h4>
                 <ul className="space-y-2">
-                  <li>
-                    <a
-                      href="/service/e-commerce-app-development"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      E-commerce App Development
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/mobile-app-development"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Mobile App Development
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/website-design"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Website Design
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/admin-dashboard"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Admin Dashboard
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/portfolio-website"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Portfolio Website
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/saas-platform-development"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      SaaS Platform Development
-                    </a>
-                  </li>
+                  <li><a href="/service/e-commerce-app-development" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">E-commerce App Development</a></li>
+                  <li><a href="/service/mobile-app-development" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Mobile App Development</a></li>
+                  <li><a href="/service/website-design" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Website Design</a></li>
+                  <li><a href="/service/admin-dashboard" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Admin Dashboard</a></li>
+                  <li><a href="/service/portfolio-website" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Portfolio Website</a></li>
+                  <li><a href="/service/saas-platform-development" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">SaaS Platform Development</a></li>
                 </ul>
               </div>
               {/* Cybersecurity */}
               <div>
                 <h4 className="text-lg font-bold text-black dark:text-white mb-2">Cybersecurity</h4>
                 <ul className="space-y-2">
-                  <li>
-                    <a
-                      href="/service/penetration-testing"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Penetration Testing
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/network-security"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Network Security
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/security-consulting"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Security Consulting
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/threat-intelligence"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Threat Intelligence
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/malware-analysis"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Malware Analysis
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/service/security-monitoring"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Security Monitoring
-                    </a>
-                  </li>
+                  <li><a href="/service/penetration-testing" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Penetration Testing</a></li>
+                  <li><a href="/service/network-security" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Network Security</a></li>
+                  <li><a href="/service/security-consulting" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Security Consulting</a></li>
+                  <li><a href="/service/threat-intelligence" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Threat Intelligence</a></li>
+                  <li><a href="/service/malware-analysis" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Malware Analysis</a></li>
+                  <li><a href="/service/security-monitoring" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Security Monitoring</a></li>
                 </ul>
               </div>
             </div>
           </li>
 
-          <li>
-            <a href="/blog" className="hover:text-orange-500">
+          <li className="group">
+            <a href="/blog" className="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-orange-500 after:transition-all after:duration-300 group-hover:after:w-full">
               Blog
             </a>
           </li>
-          <li>
-            <a href="/projects" className="hover:text-orange-500">
+          <li className="group">
+            <a href="/projects" className="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-orange-500 after:transition-all after:duration-300 group-hover:after:w-full">
               Projects
             </a>
           </li>
-          <li>
-            <a href="/contact" className="hover:text-orange-500">
+          <li className="group">
+            <a href="/contact" className="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-orange-500 after:transition-all after:duration-300 group-hover:after:w-full">
               Contact
             </a>
           </li>
@@ -282,22 +186,8 @@ const Nav: React.FC = () => {
               </button>
               {aboutMobileOpen && (
                 <ul className="ml-4 space-y-1 text-base">
-                  <li>
-                    <a
-                      href="/about/mission"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Our Mission
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/about/vision"
-                      className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                    >
-                      Our Vision
-                    </a>
-                  </li>
+                  <li><a href="/about/mission" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Our Mission</a></li>
+                  <li><a href="/about/vision" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Our Vision</a></li>
                 </ul>
               )}
             </li>
@@ -315,134 +205,34 @@ const Nav: React.FC = () => {
               {servicesMobileOpen && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 ml-4">
                   <div>
-                    <h4 className="text-base font-bold text-black dark:text-white mb-2">
-                      Web Development
-                    </h4>
+                    <h4 className="text-base font-bold text-black dark:text-white mb-2">Web Development</h4>
                     <ul className="space-y-2 text-sm ml-2">
-                      <li>
-                        <a
-                          href="/service/e-commerce-app-development"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          E-commerce App Development
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/mobile-app-development"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Mobile App Development
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/website-design"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Website Design
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/admin-dashboard"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Admin Dashboard
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/portfolio-website"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Portfolio Website
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/saas-platform-development"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          SaaS Platform Development
-                        </a>
-                      </li>
+                      <li><a href="/service/e-commerce-app-development" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">E-commerce App Development</a></li>
+                      <li><a href="/service/mobile-app-development" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Mobile App Development</a></li>
+                      <li><a href="/service/website-design" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Website Design</a></li>
+                      <li><a href="/service/admin-dashboard" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Admin Dashboard</a></li>
+                      <li><a href="/service/portfolio-website" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Portfolio Website</a></li>
+                      <li><a href="/service/saas-platform-development" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">SaaS Platform Development</a></li>
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-black dark:text-white mb-2">
-                      Cybersecurity
-                    </h4>
+                    <h4 className="text-base font-bold text-black dark:text-white mb-2">Cybersecurity</h4>
                     <ul className="space-y-2 text-sm ml-2">
-                      <li>
-                        <a
-                          href="/service/penetration-testing"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Penetration Testing
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/network-security"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Network Security
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/security-consulting"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Security Consulting
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/threat-intelligence"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Threat Intelligence
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/malware-analysis"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Malware Analysis
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/service/security-monitoring"
-                          className="block px-4 py-2 rounded-md border border-transparent hover:border-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 transition"
-                        >
-                          Security Monitoring
-                        </a>
-                      </li>
+                      <li><a href="/service/penetration-testing" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Penetration Testing</a></li>
+                      <li><a href="/service/network-security" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Network Security</a></li>
+                      <li><a href="/service/security-consulting" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Security Consulting</a></li>
+                      <li><a href="/service/threat-intelligence" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Threat Intelligence</a></li>
+                      <li><a href="/service/malware-analysis" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Malware Analysis</a></li>
+                      <li><a href="/service/security-monitoring" className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-md transition">Security Monitoring</a></li>
                     </ul>
                   </div>
                 </div>
               )}
             </li>
 
-            <li>
-              <a href="/blog" className="text-orange-600 hover:text-orange-500">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a href="/projects" className="text-orange-600 hover:text-orange-500">
-                Projects
-              </a>
-            </li>
-            <li>
-              <a href="/contact" className="text-orange-600 hover:text-orange-500">
-                Contact
-              </a>
-            </li>
+            <li><a href="/blog" className="text-orange-600 hover:text-orange-500">Blog</a></li>
+            <li><a href="/projects" className="text-orange-600 hover:text-orange-500">Projects</a></li>
+            <li><a href="/contact" className="text-orange-600 hover:text-orange-500">Contact</a></li>
           </ul>
         </div>
       )}
